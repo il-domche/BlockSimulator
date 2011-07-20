@@ -6,9 +6,11 @@ namespace Indiv0.BlockSimulator.Blocks
     class GrassBlock : Block
     {
         #region Initialization
-        public GrassBlock(Vector3 size, Vector3 position) :
-            base(size, position)
-        { }
+        public GrassBlock(BlockSimulatorGame game, Vector3 position, Vector3 scale, string modelDir) 
+            : base(game, position, scale, modelDir)
+        {
+            Body.Immovable = false;
+        }
         #endregion
     }
 }

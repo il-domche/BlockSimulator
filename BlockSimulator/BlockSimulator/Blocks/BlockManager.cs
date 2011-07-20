@@ -5,6 +5,8 @@ using Microsoft.Xna.Framework.Content;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 using Indiv0.BlockSimulator.Cameras;
+using Indiv0.BlockSimulator.Physics;
+using JigLibX.Physics;
 
 namespace Indiv0.BlockSimulator.Blocks
 {
@@ -13,7 +15,11 @@ namespace Indiv0.BlockSimulator.Blocks
         #region Private Fields
         private List<Block> _blocks = new List<Block>();
         private BasicEffect _effect;
-        private short _spacing = 32;
+        private short _spacing = 64;
+
+        private string _resourceDir = "res";
+        private string _blockGrassDir = "res/blocks/grass";
+        private string _blockBedrockDir = "res/blocks/bedrock";
         #endregion
 
         #region Properties
@@ -37,10 +43,6 @@ namespace Indiv0.BlockSimulator.Blocks
         {
             base.Update(gameTime);
             HandleInput();
-            foreach (Block block in _blocks)
-            {
-                //block.Update(gameTime);
-            }
 
             _previousKeyboardState = _currentKeyboardState;
         }
@@ -49,22 +51,12 @@ namespace Indiv0.BlockSimulator.Blocks
         {
             base.Draw(gameTime, spriteBatch);
 
-            _effect.View = Camera.ActiveCamera.View;
-            _effect.World = Camera.ActiveCamera.World;
-            _effect.Projection = Camera.ActiveCamera.Projection;
+            _game.GraphicsDevice.BlendState = BlendState.Opaque;
+            _game.GraphicsDevice.DepthStencilState = DepthStencilState.Default;
 
-            _effect.TextureEnabled = true;
-            _effect.Texture = _game.Content.Load<Texture2D>("res/blocks/grass");
-
-            _effect.EnableDefaultLighting();
-
-            foreach (EffectPass pass in _effect.CurrentTechnique.Passes)
+            foreach (Block block in _blocks)
             {
-                pass.Apply();
-                foreach (Block block in _blocks)
-                {
-                    block.RenderToDevice(_game.GraphicsDevice);
-                }
+                block.Draw(gameTime);
             }
         }
         #endregion
@@ -77,9 +69,8 @@ namespace Indiv0.BlockSimulator.Blocks
                 _blocks.Clear();
             }
 
-            Vector3 size = new Vector3(1, 1, 1);
+            Vector3 size = new Vector3(16, 16, 16);
             Vector3 position = new Vector3();
-            Texture2D texture = _game.Content.Load<Texture2D>("res/blocks/grass");
             for (int y = 0; y < 3; y++)
             {
                 position.Y = y * _spacing;
@@ -89,7 +80,14 @@ namespace Indiv0.BlockSimulator.Blocks
                     for (int z = 0; z < 3; z++)
                     {
                         position.Z = z * _spacing;
-                        _blocks.Add(new GrassBlock(new Vector3(10,10,10), position));
+                        if (y == 0)
+                        {
+                            _blocks.Add(new BedrockBlock(_game, position, size, _blockBedrockDir));
+                        }
+                        else
+                        {
+                            _blocks.Add(new GrassBlock(_game, position, size, _blockGrassDir));
+                        }
                     }
                 }
             }
