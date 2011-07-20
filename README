@@ -4,5 +4,10 @@ BUGS:
 
 CHANGELOGS:
     CURRENT:
+	v0.0.1.0:
         + Created basic game classes.
         + Began work on Camera class.
+		+ Implemented bare JigLibX physics.
+		+ Implemented Physics-related classes.
+		+ Created bare-bones system of block control.
+		+ Coded first blocks (Grass and bedrock).

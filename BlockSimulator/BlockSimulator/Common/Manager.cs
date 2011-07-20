@@ -4,7 +4,7 @@ using Microsoft.Xna.Framework.Input;
 
 namespace Indiv0.BlockSimulator.Common
 {
-    abstract class Manager
+    public abstract class Manager
     {
         #region Protected Fields
         protected static BlockSimulatorGame _game;

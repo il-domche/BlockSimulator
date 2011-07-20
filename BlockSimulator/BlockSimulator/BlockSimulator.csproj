@@ -60,6 +60,10 @@
     <XnaCompressContent>true</XnaCompressContent>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="JigLibX, Version=0.3.1.0, Culture=neutral, processorArchitecture=x86">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\BlockSimulatorContent\lib\JigLibX.dll</HintPath>
+    </Reference>
     <Reference Include="Microsoft.Xna.Framework, Version=4.0.0.0, Culture=neutral, PublicKeyToken=842cf8be1de50553, processorArchitecture=x86">
       <Private>False</Private>
     </Reference>
@@ -108,11 +112,14 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="BlockSimulatorGame.cs" />
+    <Compile Include="Blocks\BedrockBlock.cs" />
     <Compile Include="Blocks\Block.cs" />
     <Compile Include="Blocks\BlockManager.cs" />
     <Compile Include="Blocks\GrassBlock.cs" />
     <Compile Include="Cameras\Camera.cs" />
     <Compile Include="Common\Manager.cs" />
+    <Compile Include="Physics\PhysicsManager.cs" />
+    <Compile Include="Physics\PhysicsObject.cs" />
     <Compile Include="GUI\FontManager.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Program.cs" />

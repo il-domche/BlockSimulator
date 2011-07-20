@@ -7,6 +7,7 @@ using Indiv0.BlockSimulator.Utilities;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
+using Indiv0.BlockSimulator.Physics;
 
 namespace Indiv0.BlockSimulator
 {
@@ -23,7 +24,7 @@ namespace Indiv0.BlockSimulator
         private KeyboardState _previousKeyboardState;
         private KeyboardState _currentKeyboardState;
         #endregion
-
+        
         #region Initialization
         public BlockSimulatorGame()
         {
@@ -92,6 +93,7 @@ namespace Indiv0.BlockSimulator
             _managers = new List<Manager>();
             _managers.Add(new UtilityManager(this));
             _managers.Add(new FontManager(this));
+            _managers.Add(new PhysicsManager(this));
             _managers.Add(new BlockManager(this));
         }
 
@@ -102,24 +104,6 @@ namespace Indiv0.BlockSimulator
             if (_currentKeyboardState.IsKeyDown(Keys.Escape))
             {
                 this.Exit();
-            }
-
-            if (_currentKeyboardState != _previousKeyboardState)
-            {
-                if (_currentKeyboardState.IsKeyDown(Keys.K))
-                {
-                    foreach (Manager manager in _managers)
-                    {
-                        if (manager is BlockManager)
-                        {
-                            BlockManager blockManager = (BlockManager)manager;
-                            Camera.ActiveCamera.Position = blockManager.Blocks[0].Position;
-                        }
-                    }
-                    //var manager = _managers.
-                    //BlockManager manager = _managers.Contains(<BlockManager);
-                    //Camera.ActiveCamera.Position = _managers.Find(BlockManager manager)
-                }
             }
         }
         #endregion

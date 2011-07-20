@@ -31,7 +31,10 @@ namespace Indiv0.BlockSimulator.Utilities
 
             _elapsedTicks += gameTime.TotalGameTime.Ticks - _lastFrameTick;
             _lastFrameTick = gameTime.TotalGameTime.Ticks;
+        }
 
+        public override void Draw(SpriteBatch spriteBatch)
+        {
             if (_elapsedTicks <= TICKS_IN_A_SECOND)
             {
                 _framesSoFar++;
@@ -43,10 +46,7 @@ namespace Indiv0.BlockSimulator.Utilities
                 _framesSoFar = 0;
                 _outputText = Convert.ToString(_framesPerSecond);
             }
-        }
 
-        public override void Draw(SpriteBatch spriteBatch)
-        {
             spriteBatch.DrawString(FontManager.KOOTENAY_FONT, "FPS: " + _outputText, _position, Color.White);
         }
         #endregion

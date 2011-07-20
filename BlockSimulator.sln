@@ -3,7 +3,7 @@ Microsoft Visual Studio Solution File, Format Version 11.00
 # Visual C# Express 2010
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BlockSimulator", "BlockSimulator\BlockSimulator\BlockSimulator.csproj", "{9A7930EA-A1BA-4622-AE26-0E1F0A8F1F81}"
 EndProject
-Project("{96E2B04D-8817-42C6-938A-82C39BA4D311}") = "BlockSimulatorContent", "BlockSimulator\BlockSimulatorContent\BlockSimulatorContent.contentproj", "{D3ACEC1A-9521-455D-9C27-153332D4B4F3}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BlockSimulatorContent", "BlockSimulator\BlockSimulatorContent\BlockSimulatorContent.contentproj", "{D3ACEC1A-9521-455D-9C27-153332D4B4F3}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
